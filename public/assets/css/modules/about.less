@@ -1,0 +1,23 @@
+@left-w: @page-container-width - 400;
+
+.about {
+	background-color: #f5f5f5;
+	color: black;
+	text-align: center;
+
+	.page-container-flex {
+		background-color: #f5f5f5;
+	}
+
+	p {
+		.font-size-rems(22);
+	}
+
+	.right {
+		width: percentage(400 / @page-container-width);
+	}
+
+	.left {
+		width: percentage(@left-w / @page-container-width);
+	}	
+}

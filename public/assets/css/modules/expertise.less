@@ -1,0 +1,56 @@
+.expertise {
+	background-color: @blue-1;
+	color: @white;
+
+	.page-container {
+		background-color: @blue-1;
+	}
+
+	ul {
+		.clearfix();
+	}
+
+	li {
+		.clearfix();
+		width: percentage(1 / 3);
+		float: left;
+		margin: 0 0 10px 0;
+	}
+}
+
+.expertise-ico {
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin: 0 10px 0 0;
+	background-color: lighten(@blue-1, 10%);
+	border-radius: 15px;
+	text-align: center;
+	.box-sizing(border-box);
+	display: table;
+	color: #D0DD2E;
+
+	.icon-holder {	
+		display: table-cell;
+		vertical-align: middle;
+		.font-size-rems(50);
+	}
+}
+
+.expertise-details {
+	float: right;
+	width: 290px;
+	height: 130px;
+
+	h2 {
+		.font-size-rems(28);
+		color: @white;
+		margin: 0;
+		padding: 0;
+	}
+
+	p {
+		margin: 0;
+
+	}
+}

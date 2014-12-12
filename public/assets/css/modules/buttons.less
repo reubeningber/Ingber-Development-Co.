@@ -1,12 +1,13 @@
 .btn {
 	color: @white;
 	padding: 10px 15px;
-	border: 2px solid transparent;
+	border: 2px solid @white;
 	text-decoration: none;
 	.box-sizing(border-box);
+    .transition(background-color 150 linear);
 
 	&:hover {
-		border-color: @white;
-		color: white;
+		color: @red-1;
+        background-color: @white;
 	}
 }

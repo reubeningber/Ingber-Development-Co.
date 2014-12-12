@@ -861,4 +861,134 @@ $(document).ready(function() {
         googleMap();
 
     }
+
+    /* Return the right mockup according to the class & initialize sliders */
+
+    var findDevice = $('.slider');
+
+    function useMockup() {
+
+        findDevice.each(function () {
+
+            var $this = $(this),
+                slideHeight = $this.find('.owl-item').outerHeight(true),
+                iphoneBlack = '<div class="mockup iphone-mockup black"></div>',
+                iphoneWhite = '<div class="mockup iphone-mockup white"></div>',
+                iphoneGrey = '<div class="mockup iphone-mockup grey"></div>',
+                ipadBlack = '<div class="mockup ipad-mockup black"></div>',
+                ipadWhite = '<div class="mockup ipad-mockup white"></div>',
+                ipadGrey = '<div class="mockup ipad-mockup grey"></div>',
+                desktop = '<div class="mockup desktop-mockup"></div>',
+                deviceWrapper = $this.parent('.row-content'),
+                mockupslider = $this.children('figure'),
+                autoplay = $this.data('autoplay');
+
+            if (!$this.parent('div').hasClass('side-mockup')) {
+
+                mockupslider.owlCarousel({
+                    singleItem: true,
+                    autoPlay: autoplay || false,
+                    stopOnHover: true,
+                    responsiveBaseWidth: ".slider",
+                    responsiveRefreshRate: 0,
+                    addClassActive: true,
+                    navigation: true,
+                    navigationText: [
+                        "<i class='fa fa-chevron-left'></i>",
+                        "<i class='fa fa-chevron-right'></i>"
+                    ],
+                    pagination: false,
+                    rewindSpeed: 2000,
+                });
+
+            } else {
+
+                mockupslider.owlCarousel({
+                    singleItem: true,
+                    autoPlay: autoplay || false,
+                    stopOnHover: true,
+                    transitionStyle: "fade",
+                    responsiveBaseWidth: ".slider",
+                    responsiveRefreshRate: 0,
+                    addClassActive: true,
+                    navigation: false,
+                    pagination: true,
+                    rewindSpeed: 2000,
+                    mouseDrag: false,
+                    touchDrag: false
+                });
+
+            }
+
+            if ($this.hasClass('iphone-slider black')) {
+
+                $this.find('.owl-wrapper-outer').after(iphoneBlack);
+
+            } else if ($this.hasClass('iphone-slider white')) {
+
+                $this.find('.owl-wrapper-outer').after(iphoneWhite);
+
+            } else if ($this.hasClass('iphone-slider grey')) {
+
+                $this.find('.owl-wrapper-outer').after(iphoneGrey);
+
+            } else if ($this.hasClass('ipad-slider black')) {
+
+                $this.find('.owl-wrapper-outer').after(ipadBlack);
+
+            } else if ($this.hasClass('ipad-slider white')) {
+
+                $this.find('.owl-wrapper-outer').after(ipadWhite);
+
+            } else if ($this.hasClass('ipad-slider grey')) {
+
+                $this.find('.owl-wrapper-outer').after(ipadGrey);
+
+            } else if ($this.hasClass('desktop-slider')) {
+
+                $this.find('.owl-wrapper-outer').after(desktop);
+
+            }
+
+            $this.waitForImages({
+
+                finished: function () {
+
+                    $this.fadeIn('slow');
+
+                },
+                waitForAll: true
+            });
+
+            deviceWrapper.css({
+                'padding-left': '0',
+                'padding-right': '0'
+            })
+
+
+        });
+
+    }
+
+    if ((findDevice.length) && (!findDevice.hasClass('gallery'))) {
+
+        useMockup();
+
+        function fixArrowPos() {
+
+            findDevice.each(function () {
+
+                var slideHeight = $(this).find('.owl-item').outerHeight(true);
+
+                $(this).find('.owl-prev, .owl-next').css('top', slideHeight / 2);
+
+            });
+
+        }
+
+        fixArrowPos();
+        $(window).resize(fixArrowPos);
+
+    }
+
 });

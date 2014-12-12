@@ -915,7 +915,7 @@ $(document).ready(function() {
                     pagination: true,
                     rewindSpeed: 2000,
                     mouseDrag: false,
-                    touchDrag: false
+                    touchDrag: false,
                 });
 
             }

@@ -15,14 +15,18 @@
 		width: percentage(1 / 3);
 		float: left;
 		margin: 0 0 10px 0;
+
+		@media screen and (max-width: 768px) {
+			float: none;
+			width: 100%;
+		}
 	}
 }
 
 .expertise-ico {
-	float: left;
 	width: 100px;
 	height: 100px;
-	margin: 0 10px 0 0;
+	margin: 0 auto 20px auto;
 	background-color: lighten(@blue-1, 10%);
 	border-radius: 15px;
 	text-align: center;
@@ -34,16 +38,25 @@
 		display: table-cell;
 		vertical-align: middle;
 		
-		img {
-			width: 90%;
+		&.responsive {
+			img {
+				width: 90%;
+			}
+		}
+
+		&.development, 
+		&.service {
+			img {
+				width: 80%;
+			}
 		}
 	}
 }
 
 .expertise-details {
-	float: right;
-	width: 290px;
-	height: 130px;
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
 
 	h2 {
 		.font-size-rems(28);

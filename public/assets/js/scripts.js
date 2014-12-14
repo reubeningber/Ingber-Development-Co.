@@ -1,5 +1,42 @@
 $(document).ready(function() {
-	    function googleMap() {
+    /*-------------------------------------------- */
+    /** Stuck Header */
+    /*-------------------------------------------- */
+    
+    $('.main-nav').waypoint('sticky');
+
+    // $('.page-content').waypoint(function(dir) {
+    //     if (dir === 'down') {
+    //         $('.main-nav').addClass('stuck');
+    //     } else {
+    //         $('.main-nav').removeClass('stuck');
+    //     };
+    // }, { offset: 110 });
+
+
+    $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+            $.waypoints('disable');
+            var target = $(this.hash);
+            $('.main-nav li').removeClass('active');
+            $(this).parent().addClass('active');
+
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+            
+            if (target.length) {
+                var scrollPosition = target.offset().top - 70;
+
+                $('html,body').stop().animate({
+                    scrollTop: scrollPosition,
+                }, 1000, function() {
+                    $.waypoints('enable');
+                });
+            return false;
+            }
+        }
+    });
+
+    function googleMap() {
 
         $('.map').each(function (i, e) {
 
@@ -26,321 +63,9 @@ $(document).ready(function() {
             };
 
             /* Map's style */
-            var red1 = "#fd685b",
-                red2 = "#fe8e84",
-                orange1 = "#fa6f57",
-                orange2 = "#fb9381",
-                yellow1 = "#fecd5e",
-                yellow2 = "#fedc8f",
-                green1 = "#a1d26e",
-                green2 = "#b9dd92",
-                mint1 = "#4fcead",
-                mint2 = "#7bdac2",
-                aqua1 = "#4FC1E9",
-                aqua2 = "#73d2f4",
-                blue1 = "#5D9CEC",
-                blue2 = "#86b5f1",
-                purple1 = "#ab94e9",
-                purple2 = "#c0afef",
-                pink1 = "#ea89bf",
-                pink2 = "#efa7cf",
-                white1 = "#E6E9ED",
-                white2 = "#F5F7FA",
-                grey1 = "#AAB2BD",
-                grey2 = "#CCD1D9",
-                darkgrey1 = "#434A54",
-                darkgrey2 = "#5f656d";
+            var aqua1 = "#4FC1E9",
+                aqua2 = "#73d2f4";
 
-            if ($map_color == 'red') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": red1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": red2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = red1;
-
-            }
-            if ($map_color == 'orange') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": orange1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": orange2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = orange1;
-
-            }
-            if ($map_color == 'yellow') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": yellow1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": yellow2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = yellow1;
-
-            }
-            if ($map_color == 'green') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": green1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": green2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = green1;
-
-            }
-            if ($map_color == 'mint') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": mint1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": mint2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = mint1;
-
-            }
             if ($map_color == 'aqua') {
 
                 var styles = [{
@@ -399,370 +124,6 @@ $(document).ready(function() {
                     textcolor = aqua1;
 
             }
-            if ($map_color == 'blue') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": blue1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": blue2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = blue1;
-
-            }
-            if ($map_color == 'purple') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": purple1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": purple2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = purple1;
-
-            }
-            if ($map_color == 'pink') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": pink1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": pink2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = pink1;
-
-            }
-            if ($map_color == 'white') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": white1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": white2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = '#333';
-
-            }
-            if ($map_color == 'grey') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": grey1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": grey2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = '#333';
-
-            }
-            if ($map_color == 'dark-grey') {
-
-                var styles = [{
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "water",
-                    "stylers": [{
-                        "color": darkgrey1
-                    }]
-                }, {
-                    "featureType": "water",
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.natural",
-                    "stylers": [{
-                        "color": darkgrey2
-                    }]
-                }, {
-                    "featureType": "road",
-                    "elementType": "geometry",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "poi",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "road",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "transit",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "landscape.man_made",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }, {
-                    "featureType": "administrative",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
-                }],
-                    textcolor = '#333';
-
-            }
-            if ($map_color == 'invert') {
-
-                var styles = [{
-                    "stylers": [{
-                        "invert_lightness": "true"
-                    }, {
-                        "hue": "0xffbb00"
-                    }, {
-                        "saturation": "-100"
-                    }, {
-                        "lightness": "15"
-                    }]
-                }],
-                    textcolor = '#333';
-
-            }
 
             var styledMap = new google.maps.StyledMapType(styles, {
                 name: "Styled Map"
@@ -789,19 +150,6 @@ $(document).ready(function() {
             map.setMapTypeId('map_style');
 
             var contentString = '<div class="infobox-inner" style="color: ' + textcolor + ';">' + $map_info + '</div>';
-
-            /* Custom infowindow code; it has been replaced by the code below, using Infobox plugin
-
-            var infowindow = new google.maps.InfoWindow({
-                content: contentString
-            });
-            
-            google.maps.event.addListener(marker, 'click', function() {
-                infowindow.open(map,marker);
-            });
-            infowindow.open(map,marker); // To force Infowindow open
-
-            */
 
             var infobox = new InfoBox({
                 content: contentString,
@@ -862,133 +210,132 @@ $(document).ready(function() {
 
     }
 
-    /* Return the right mockup according to the class & initialize sliders */
+    // /* Return the right mockup according to the class & initialize sliders */
 
-    var findDevice = $('.slider');
+    // var findDevice = $('.slider');
 
-    function useMockup() {
+    // function useMockup() {
 
-        findDevice.each(function () {
+    //     findDevice.each(function () {
 
-            var $this = $(this),
-                slideHeight = $this.find('.owl-item').outerHeight(true),
-                iphoneBlack = '<div class="mockup iphone-mockup black"></div>',
-                iphoneWhite = '<div class="mockup iphone-mockup white"></div>',
-                iphoneGrey = '<div class="mockup iphone-mockup grey"></div>',
-                ipadBlack = '<div class="mockup ipad-mockup black"></div>',
-                ipadWhite = '<div class="mockup ipad-mockup white"></div>',
-                ipadGrey = '<div class="mockup ipad-mockup grey"></div>',
-                desktop = '<div class="mockup desktop-mockup"></div>',
-                deviceWrapper = $this.parent('.row-content'),
-                mockupslider = $this.children('figure'),
-                autoplay = $this.data('autoplay');
+    //         var $this = $(this),
+    //             slideHeight = $this.find('.owl-item').outerHeight(true),
+    //             iphoneBlack = '<div class="mockup iphone-mockup black"></div>',
+    //             iphoneWhite = '<div class="mockup iphone-mockup white"></div>',
+    //             iphoneGrey = '<div class="mockup iphone-mockup grey"></div>',
+    //             ipadBlack = '<div class="mockup ipad-mockup black"></div>',
+    //             ipadWhite = '<div class="mockup ipad-mockup white"></div>',
+    //             ipadGrey = '<div class="mockup ipad-mockup grey"></div>',
+    //             desktop = '<div class="mockup desktop-mockup"></div>',
+    //             deviceWrapper = $this.parent('.row-content'),
+    //             mockupslider = $this.children('figure'),
+    //             autoplay = $this.data('autoplay');
 
-            if (!$this.parent('div').hasClass('side-mockup')) {
+    //         if (!$this.parent('div').hasClass('side-mockup')) {
 
-                mockupslider.owlCarousel({
-                    singleItem: true,
-                    autoPlay: autoplay || false,
-                    stopOnHover: true,
-                    responsiveBaseWidth: ".slider",
-                    responsiveRefreshRate: 0,
-                    addClassActive: true,
-                    navigation: true,
-                    navigationText: [
-                        "<i class='fa fa-chevron-left'></i>",
-                        "<i class='fa fa-chevron-right'></i>"
-                    ],
-                    pagination: false,
-                    rewindSpeed: 2000,
-                });
+    //             mockupslider.owlCarousel({
+    //                 singleItem: true,
+    //                 autoPlay: autoplay || false,
+    //                 stopOnHover: true,
+    //                 responsiveBaseWidth: ".slider",
+    //                 responsiveRefreshRate: 0,
+    //                 addClassActive: true,
+    //                 navigation: true,
+    //                 navigationText: [
+    //                     "<i class='fa fa-chevron-left'></i>",
+    //                     "<i class='fa fa-chevron-right'></i>"
+    //                 ],
+    //                 pagination: false,
+    //                 rewindSpeed: 2000,
+    //             });
 
-            } else {
+    //         } else {
 
-                mockupslider.owlCarousel({
-                    singleItem: true,
-                    autoPlay: autoplay || false,
-                    stopOnHover: true,
-                    transitionStyle: "fade",
-                    responsiveBaseWidth: ".slider",
-                    responsiveRefreshRate: 0,
-                    addClassActive: true,
-                    navigation: false,
-                    pagination: true,
-                    rewindSpeed: 2000,
-                    mouseDrag: false,
-                    touchDrag: false,
-                });
+    //             mockupslider.owlCarousel({
+    //                 singleItem: true,
+    //                 autoPlay: autoplay || false,
+    //                 stopOnHover: true,
+    //                 transitionStyle: "fade",
+    //                 responsiveBaseWidth: ".slider",
+    //                 responsiveRefreshRate: 0,
+    //                 addClassActive: true,
+    //                 navigation: false,
+    //                 pagination: true,
+    //                 rewindSpeed: 2000,
+    //                 mouseDrag: false,
+    //                 touchDrag: false,
+    //             });
 
-            }
+    //         }
 
-            if ($this.hasClass('iphone-slider black')) {
+    //         if ($this.hasClass('iphone-slider black')) {
 
-                $this.find('.owl-wrapper-outer').after(iphoneBlack);
+    //             $this.find('.owl-wrapper-outer').after(iphoneBlack);
 
-            } else if ($this.hasClass('iphone-slider white')) {
+    //         } else if ($this.hasClass('iphone-slider white')) {
 
-                $this.find('.owl-wrapper-outer').after(iphoneWhite);
+    //             $this.find('.owl-wrapper-outer').after(iphoneWhite);
 
-            } else if ($this.hasClass('iphone-slider grey')) {
+    //         } else if ($this.hasClass('iphone-slider grey')) {
 
-                $this.find('.owl-wrapper-outer').after(iphoneGrey);
+    //             $this.find('.owl-wrapper-outer').after(iphoneGrey);
 
-            } else if ($this.hasClass('ipad-slider black')) {
+    //         } else if ($this.hasClass('ipad-slider black')) {
 
-                $this.find('.owl-wrapper-outer').after(ipadBlack);
+    //             $this.find('.owl-wrapper-outer').after(ipadBlack);
 
-            } else if ($this.hasClass('ipad-slider white')) {
+    //         } else if ($this.hasClass('ipad-slider white')) {
 
-                $this.find('.owl-wrapper-outer').after(ipadWhite);
+    //             $this.find('.owl-wrapper-outer').after(ipadWhite);
 
-            } else if ($this.hasClass('ipad-slider grey')) {
+    //         } else if ($this.hasClass('ipad-slider grey')) {
 
-                $this.find('.owl-wrapper-outer').after(ipadGrey);
+    //             $this.find('.owl-wrapper-outer').after(ipadGrey);
 
-            } else if ($this.hasClass('desktop-slider')) {
+    //         } else if ($this.hasClass('desktop-slider')) {
 
-                $this.find('.owl-wrapper-outer').after(desktop);
+    //             $this.find('.owl-wrapper-outer').after(desktop);
 
-            }
+    //         }
 
-            $this.waitForImages({
+    //         $this.waitForImages({
 
-                finished: function () {
+    //             finished: function () {
 
-                    $this.fadeIn('slow');
+    //                 $this.fadeIn('slow');
 
-                },
-                waitForAll: true
-            });
+    //             },
+    //             waitForAll: true
+    //         });
 
-            deviceWrapper.css({
-                'padding-left': '0',
-                'padding-right': '0'
-            })
+    //         deviceWrapper.css({
+    //             'padding-left': '0',
+    //             'padding-right': '0'
+    //         })
 
 
-        });
+    //     });
 
-    }
+    // }
 
-    if ((findDevice.length) && (!findDevice.hasClass('gallery'))) {
+    // if ((findDevice.length) && (!findDevice.hasClass('gallery'))) {
 
-        useMockup();
+    //     useMockup();
 
-        function fixArrowPos() {
+    //     function fixArrowPos() {
 
-            findDevice.each(function () {
+    //         findDevice.each(function () {
 
-                var slideHeight = $(this).find('.owl-item').outerHeight(true);
+    //             var slideHeight = $(this).find('.owl-item').outerHeight(true);
 
-                $(this).find('.owl-prev, .owl-next').css('top', slideHeight / 2);
+    //             $(this).find('.owl-prev, .owl-next').css('top', slideHeight / 2);
 
-            });
+    //         });
 
-        }
+    //     }
 
-        fixArrowPos();
-        $(window).resize(fixArrowPos);
+    //     fixArrowPos();
+    //     $(window).resize(fixArrowPos);
 
-    }
-
+    // }
 });

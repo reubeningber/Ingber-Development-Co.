@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <title>Ingber Development Co.</title>
 
-    <link rel="stylesheet" href="/assets/css/main.css">
+	<meta name="Author" content="Reuben A. Ingber">
+    <meta name="Description" content="Ingber Development Company is a web development and design company run by Reuben Ingber.">
+    <meta name="Keywords" content="Web Design, Development, Wordpress">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+   
+
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Raleway:800,400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/main.css">
 
 </head>
-<body>  
+<body>
+    <div class="page-content">
     <%- yield %>
+    </div>  
     <%- partial("_partials/scripts") %>
 </body>
 </html>

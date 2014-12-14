@@ -1,11 +1,10 @@
 .main-nav {
 	background-color: @red-1;
 	text-align: center;
-	padding: 10px 0 0 0;
 	
 	nav {
 		height: 50px;
-		padding: 10px 0 0 0;
+		padding: 10px 0;
 
 
 		a { 
@@ -13,10 +12,41 @@
 			text-decoration: none;
 			padding: 10px 25px;
 			border: 2px solid transparent;
+			text-transform: uppercase;
 
 			&:hover {
 				border: 2px solid @white;
 			}
+		}
+	}
+
+	.logo-small {
+		float: left;
+		opacity: 0;
+		
+		h1 {
+			display: inline-block;
+			margin: 0;
+			padding: 10px 0 10px 10px;
+			line-height: 1;
+		}
+	}
+
+	&.stuck {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: @z-zeus;
+		.clearfix();
+
+		nav {
+			float: right;
+			padding: 10px 0 10px 10px;
+		}
+
+		.logo-small {
+			opacity: 1;
+			.transition(opacity, 300, easy);
 		}
 	}
 }
